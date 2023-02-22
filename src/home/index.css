@@ -1,0 +1,22 @@
+.main{
+    width: 80%;
+    height:auto;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    background-color: red;
+}
+
+.publications{
+    width: 60%;
+    height: auto;
+
+    background-color: orange;
+}
+
+.about{
+    width: 40%;
+    height: auto;
+
+    background-color: bisque;
+}
