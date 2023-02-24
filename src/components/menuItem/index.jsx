@@ -3,10 +3,11 @@ import "./index.css";
 
 const MenuItem=(props)=>{
     return(
-        <div className="item">
-            <></>
-            <span className="logo">{props.logo}</span>
-            <p className="text">{props.name}</p>
+        <div className="menu-item" onClick={()=>props.setTab(props.name)} 
+             style={props.name===props.tabSelected? {"background-color":"rgba(0, 0, 0, 0.50)"}:{}} 
+        >
+            <span className="menu-logo">{props.logo}</span>
+            <p className="menu-text">{props.name}</p>
         </div>
     );
 }

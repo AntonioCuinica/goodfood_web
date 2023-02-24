@@ -1,0 +1,37 @@
+.publisher{
+    width:100%;
+    height:20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:5px 10px;
+    background: linear-gradient(-45deg,#eacba6,#dcb68e,#deb283,#b1926e);
+}
+
+.publisher img{
+    width:50px;
+    height:90%;
+    border:1px solid black;
+    border-radius:50%;
+}
+
+.publisher .pub-profile{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.publisher .pub-profile p{
+    font-size:1.5vw;
+    font-weight: bold;
+}
+
+.publisher button{
+    height:6vh;
+    width:100px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(45deg,#EB9C9C,#2D4CE9);
+}

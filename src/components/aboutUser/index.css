@@ -1,0 +1,55 @@
+
+.about-user{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.abusr-profile{
+    height: 100px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.abusr-profile img{
+    width:6vw;
+    height:6vw;
+    border:1px solid black;
+    border-radius:50%;
+}
+
+.abusr-profile p{
+    font-size:1.2vw;
+    font-weight: bold;
+}
+
+.abusr-profile button{
+    height:2vw;
+    width:100px;
+    border: none;
+    color: blue;
+    background-color: transparent;
+}
+
+.abusr-sugestion{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.abusr-sugestion-title{
+    color:black;
+    font-size:1.2vw;
+}
+
+

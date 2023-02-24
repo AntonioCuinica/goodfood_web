@@ -1,4 +1,4 @@
-.item{
+.menu-item{
     width:100%;
     height: 50px;
     display: flex;
@@ -10,6 +10,6 @@
     background-color: rgba(0, 0, 0, 0.18);
 }
 
-.item:hover{
+.menu-item:hover{
     background-color: rgba(0, 0, 0, 0.44);
 }
