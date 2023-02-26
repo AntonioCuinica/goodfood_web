@@ -1,13 +1,14 @@
-.main{
+.home{
     width: 100%;
     height:auto;
     display: flex;
     justify-content: center;
     gap:20px;
     overflow-y: scroll;
+    background-color: rgba(82, 69, 118, 0.4);
 }
 
-.publications{
+.home-publications{
     width: 50%;
     height: auto;
     display: flex;
@@ -16,7 +17,7 @@
     gap:10px;
 }
 
-.about{
+.home-about{
     width: 40%;
     height: auto;
 }

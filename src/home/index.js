@@ -5,14 +5,14 @@ import "./index.css";
 
 const home=()=>{
     return(
-        <div className="main">
-            <div className="publications">
+        <div className="home">
+            <div className="home-publications">
                 <Publication/>
                 <Publication/>
                 <Publication/>
                 <Publication/>
             </div>
-            <div className="about">
+            <div className="home-about">
                <AboutUser/>
             </div>
         </div>

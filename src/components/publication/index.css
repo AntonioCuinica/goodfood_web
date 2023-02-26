@@ -16,22 +16,27 @@
 
 .pub-recipe-title{
     display: flex;
-    flex-direction: column;
     width:calc(100% - 20px);
     height:15%;
     margin:10px;
     border-radius: 10px;
+    align-items: center;
     justify-content: center;
+    font-size:2vw;
     background: linear-gradient(45deg,#875f44,#987861);
+    color:white;
 }
 
 .pub-recipe-title p{
+    width:90%;
     text-align: center;
-    color:white;
     font-family: "Vivaldi";
-    font-size:2vw;
     font-weight: bold;
     letter-spacing: 4px;
+}
+
+.pub-recipe-title .icon{
+    width:10%;
 }
 
 .pub-recipe-img, .pub-recipe-img img {

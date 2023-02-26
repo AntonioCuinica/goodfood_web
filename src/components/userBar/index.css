@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     padding:5px 10px;
-    background: linear-gradient(-45deg,#eacba6,#dcb68e,#deb283,#b1926e);
+    background: linear-gradient(-45deg,#ead1b1,#f1d3b2,#d9b690,#af9476);
 }
 
 .publisher img{
@@ -25,13 +25,4 @@
 .publisher .pub-profile p{
     font-size:1.5vw;
     font-weight: bold;
-}
-
-.publisher button{
-    height:6vh;
-    width:100px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    background: linear-gradient(45deg,#EB9C9C,#2D4CE9);
 }

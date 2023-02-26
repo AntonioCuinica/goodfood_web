@@ -9,7 +9,7 @@ const AboutUser=(props)=>{
             <div className="abusr-profile">
                 <img src={Profile} alt="profile"/>
                 <p>Antonio Ricardo Cuinica</p>
-                <button>Ver perfil</button>
+                <button>Sair</button>
             </div>
             <div className="abusr-sugestion">
                 <h2 className="abusr-sugestion-title">Sugestões de contas a seguir</h2>
