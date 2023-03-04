@@ -6,3 +6,7 @@
     color: white;
     background: linear-gradient(45deg,#EB9C9C,#2D4CE9);
 }
+
+.button:hover{
+    cursor:pointer;
+}

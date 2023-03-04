@@ -1,9 +1,12 @@
 import React from "react";
 import Button from "../components/button";
-import ProfileFoto from "../img/profile.jpg"
-import "./index.css"
+import Publication from "../components/publication";
+import ProfileFoto from "../img/profile.jpg";
+import {IoAdd} from "react-icons/io5";
+import "./index.css";
+import NewRecipe from "../components/newRecipe";
 
-const Profile=()=>{
+const Profile=(props)=>{
     return(
         <div className="profile">
             <div className="profile-about">
@@ -25,7 +28,27 @@ const Profile=()=>{
                 </div>
                 <Button text="Editar"/>
             </div>
-            <div className="profile-content"></div>
+            <div className="profile-content">
+                <div className="profile-content-tabs">
+                    <p>Publicações</p>
+                    <p>Favoritos</p>
+                </div>
+                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe/>})} >Publicar nova receita {<IoAdd/>}</button>
+                <div className="profile-content-publications">
+                    <div className="pub">
+                        <Publication/>
+                    </div>
+                    <div className="pub">
+                        <Publication/>
+                    </div>
+                    <div className="pub">
+                        <Publication/>
+                    </div>
+                    <div className="pub">
+                        <Publication/>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -5,8 +5,9 @@ import {FaEye,FaHeart} from "react-icons/fa"
 import {IoStarOutline} from "react-icons/io5"
 import "./index.css";
 import UserBar from "../userBar";
+import SeeRecipe from "../seeRecipe";
 
-const Publication=()=>{
+const Publication=(props)=>{
     return(
         <div className="pub-main">
             <UserBar img={Profile}/>
@@ -29,8 +30,9 @@ const Publication=()=>{
                     <FaEye/>
                     <p>230</p>
                 </div>
-                <div className="pub-info-open">
-                    <p>Ver</p>
+                <div className="pub-info-open" >
+                    <p onClick={()=>props.setModal({close:false,component:<SeeRecipe setModal={props.setModal}/>})
+                }>Ver</p>
                 </div>
             </div>
         </div>

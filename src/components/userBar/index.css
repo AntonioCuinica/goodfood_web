@@ -1,6 +1,6 @@
 .publisher{
     width:100%;
-    height:20%;
+    height:55px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,6 +23,6 @@
 }
 
 .publisher .pub-profile p{
-    font-size:1.5vw;
+    font-size:1.2vw;
     font-weight: bold;
 }
