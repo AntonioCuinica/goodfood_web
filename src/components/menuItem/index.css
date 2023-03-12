@@ -1,15 +1,22 @@
 .menu-item{
     width:100%;
-    height: 50px;
+    min-height: 10vh;
+    max-height: 10vh;
     display: flex;
-    padding: 5px;
+    padding: 1vh;
     gap:2px;
     align-items: center;
     justify-content: flex-start;
-    border-radius: 10px;
+    border-radius: 2vh;
     background-color: rgba(0, 0, 0, 0.18);
+    cursor: pointer;
 }
 
 .menu-item:hover{
     background-color: rgba(0, 0, 0, 0.44);
+}
+
+.menu-text,.menu-logo{
+    cursor:pointer;
+    font-size:3vh;
 }

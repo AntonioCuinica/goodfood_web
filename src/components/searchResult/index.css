@@ -1,11 +1,11 @@
 .search-result{
     width:100%;
-    height:auto;
+    height:12vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding:5px 10px;
-    border-radius: 10px;
+    padding:1vh 2vh;
+    border-radius: 2vh;
     background-color: rgba(0, 0, 0, 0.355);
 }
 .search-result:hover{
@@ -13,8 +13,8 @@
 }
 
 .search-result-data img{
-    width:50px;
-    height:100%;
+    width:5vw;
+    height:5vw;
     border:1px solid rgb(255, 255, 255);
     border-radius:50%;
 }
@@ -23,11 +23,11 @@
     height: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 2vh;
 }
 
 .search-result-data p{
-    font-size:1.6vw;
+    font-size:3vh;
     letter-spacing: 5px;
     font-weight: bold;
     color:#ffffff9a;

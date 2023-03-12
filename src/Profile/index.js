@@ -33,19 +33,19 @@ const Profile=(props)=>{
                     <p>Publicações</p>
                     <p>Favoritos</p>
                 </div>
-                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe/>})} >Publicar nova receita {<IoAdd/>}</button>
+                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal}/>})} >Publicar nova receita {<IoAdd/>}</button>
                 <div className="profile-content-publications">
                     <div className="pub">
-                        <Publication/>
+                        <Publication setModal={props.setModal}/>
                     </div>
                     <div className="pub">
-                        <Publication/>
+                        <Publication setModal={props.setModal}/>
                     </div>
                     <div className="pub">
-                        <Publication/>
+                        <Publication setModal={props.setModal}/>
                     </div>
                     <div className="pub">
-                        <Publication/>
+                        <Publication setModal={props.setModal}/>
                     </div>
                 </div>
             </div>

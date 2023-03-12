@@ -17,9 +17,9 @@ function App() {
       <div className='screens'>
         {
           tab === "Search"  ?
-            <Search/>  :
+            <Search setModal={setModal}/>  :
           tab === "Setting" ?
-            <Setting/> :
+            <Setting setModal={setModal}/> :
           tab === "Profile" ?
             <Profile setModal={setModal}/> :
             <Home setModal={setModal}/>

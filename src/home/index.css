@@ -3,7 +3,7 @@
     height:auto;
     display: flex;
     justify-content: center;
-    gap:20px;
+    gap:2vh;
     overflow-y: scroll;
     background-color: rgba(82, 69, 118, 0.4);
 }
@@ -13,8 +13,8 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    padding:10px;
-    gap:10px;
+    padding:2vh;
+    gap:2vh;
 }
 
 .home-about{

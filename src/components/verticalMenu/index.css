@@ -2,25 +2,32 @@
     position: fixed;
     height:100vh;
     width:20%;
-    padding:10px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    padding:2vh;
     border-right:0.5px solid rgba(0, 0, 0, 0.18);
     color:white;
     background: linear-gradient(45deg,#2D4CE9,#EB9C9C);
 }
 
 .vertical-menu-title{
-    margin:30px 0px 30px 0px;
-    text-align: center;
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Vivaldi";
     font-size:3vw;
 }
 
 .vertical-menu-items{
+    height: 80vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap:10px;
     align-items: center;
     justify-content: flex-start;
-    font-size: 18px;
+    gap:2vh;
 }

@@ -9,7 +9,9 @@ const UserBar=(props)=>{
                 <img src={props.img} alt="profile"/>
                 <p>Antonio Ricardo Cuinica</p>
             </div>
-            <Button text="Seguir"/>
+            <div className="pub-follow">
+                <Button text="Seguir"/>
+            </div>
         </div>
     )
 }

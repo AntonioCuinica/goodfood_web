@@ -1,6 +1,4 @@
 .pub-main{
-    width:100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,16 +7,13 @@
 
 .pub-recipe{
     width:100%;
-    height: calc(80%-55px);
-    display:flex;
-    flex-direction:column;
 }
 
 .pub-recipe-title{
     display:flex;
-    width:calc(100% - 20px);
-    margin:10px;
-    border-radius: 10px;
+    width:calc(100% - 4vh);
+    margin:2vh;
+    border-radius: 2vh;
     align-items:center;
     justify-content:center;
     font-size:2vw;
@@ -31,16 +26,13 @@
     text-align: center;
     font-family: "Vivaldi";
     font-weight: bold;
-    letter-spacing: 4px;
+    letter-spacing: 0.8vh;
 }
 
 .pub-recipe-title .icon{
     width:10%;
 }
 
-.pub-recipe-img {
-    width:100%;
-}
 .pub-recipe-img img {
     width:100%;
     object-fit: fill;
@@ -49,17 +41,16 @@
 .pub-info{
     display: flex;
     width:100%;
-    height:20%;
     align-items: center;
     justify-content: space-evenly;
-    padding:2px;
+    padding:0.4vh;
 }
 
 .pub-info div{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap:5px;
+    gap:1vh;
     font-size: 1.2vw;
 }
 

@@ -1,12 +1,23 @@
 .button{
     height:6vh;
-    width:100px;
+    width:5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    border-radius: 10px;
+    border-radius: 2vh;
     color: white;
+    padding:1vh 3vw;
+    font-size: 1.2vw;
     background: linear-gradient(45deg,#EB9C9C,#2D4CE9);
 }
 
 .button:hover{
     cursor:pointer;
+    background: linear-gradient(45deg,#eb9c9ccd,#2d4ce9cd);
+}
+
+.button:active{
+    background: linear-gradient(45deg,#eb9c9c9f,#2d4ce9af);
+    border:1px solid rgba(255, 255, 255, 0.5);
 }
