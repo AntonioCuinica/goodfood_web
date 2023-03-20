@@ -11,7 +11,12 @@ const VerticalMenu=(props)=>{
                 <MenuItem name="Home" logo={<IoHomeOutline/>} setTab={props.setTab} tabSelected={props.tabSelected}/>
                 <MenuItem name="Search" logo={<IoSearchOutline/>} setTab={props.setTab} tabSelected={props.tabSelected}/>
                 <MenuItem name="Setting" logo={<IoSettingsOutline/> } setTab={props.setTab} tabSelected={props.tabSelected}/>
-                <MenuItem name="Profile" logo={<IoPersonOutline/>} setTab={props.setTab} tabSelected={props.tabSelected}/>
+                {
+                    Boolean(props.user) ?
+                        <MenuItem name="Profile" logo={<IoPersonOutline/>} setTab={props.setTab} tabSelected={props.tabSelected}/>
+                    :
+                        <></>
+                }
             </div>
         </div>
     );

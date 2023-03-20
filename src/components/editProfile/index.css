@@ -1,0 +1,37 @@
+.edit-profile{
+    position: absolute;
+    width:55%;
+    height:85%;
+    display: flex;
+    flex-direction: column;
+    padding:2vh;
+    gap:0.5vh;
+    border-radius:1vh;
+    background-color: #EBD1B6;
+}
+
+.edit-profile-title{
+    width:100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size: 1.2vw;
+    background-color: rgba(143, 109, 68, 0.3)
+}
+
+.edit-profile-containers{
+    width:100%;
+    height:70%;
+    display: flex;
+    gap:0.48vh;
+    color:#8D3F0C;
+}
+
+.edit-profile-close{
+    display: flex;
+    height:8vh;
+    justify-content: center;
+    align-items: center;
+}

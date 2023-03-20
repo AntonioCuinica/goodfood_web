@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Modal modal={modal} setModal={setModal}/>
-      <VerticalMenu setTab={setTab} tabSelected={tab}/>
+      <VerticalMenu setTab={setTab} tabSelected={tab} user={null}/>
       <div className='screens'>
         {
           tab === "Search"  ?

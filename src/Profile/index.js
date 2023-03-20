@@ -5,6 +5,7 @@ import ProfileFoto from "../img/profile.jpg";
 import {IoAdd} from "react-icons/io5";
 import "./index.css";
 import NewRecipe from "../components/newRecipe";
+import EditProfile from "../components/editProfile";
 
 const Profile=(props)=>{
     return(
@@ -26,7 +27,7 @@ const Profile=(props)=>{
                         <p>Seguindo</p>
                     </div>
                 </div>
-                <Button text="Editar"/>
+                <Button text="Editar" onClick={()=>props.setModal({close:false,component:<EditProfile setModal={props.setModal}/>})}/>
             </div>
             <div className="profile-content">
                 <div className="profile-content-tabs">

@@ -34,6 +34,14 @@
     cursor: pointer;
 }
 
+.abusr-profile button:hover{
+    color:rgba(255, 255, 255, 0.8);
+}
+
+.abusr-profile button:active{
+    color:rgba(255, 255, 255, 0.9);
+}
+
 
 
 .abusr-sugestion{

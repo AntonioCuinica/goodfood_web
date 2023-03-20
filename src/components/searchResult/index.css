@@ -6,10 +6,10 @@
     justify-content: space-between;
     padding:1vh 2vh;
     border-radius: 2vh;
-    background-color: rgba(0, 0, 0, 0.355);
+    background-color: rgb(133, 187, 231);
 }
 .search-result:hover{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(133, 187, 231,0.8);
 }
 
 .search-result-data img{
@@ -30,5 +30,5 @@
     font-size:3vh;
     letter-spacing: 5px;
     font-weight: bold;
-    color:#ffffff9a;
+    color:#ffffff;
 }

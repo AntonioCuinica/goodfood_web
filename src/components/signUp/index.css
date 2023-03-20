@@ -1,0 +1,114 @@
+.signup{
+    position: absolute;
+    width:40%;
+    height:85%;
+    display: flex;
+    flex-direction: column;
+    padding:4vh;
+    border-radius:2vh;
+    background-image: url("../../img/bg.png");
+    background-size: cover;
+}
+
+.signup-containers{
+    width:100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:6vh;
+    color:#fff;
+}
+
+.signup-logo{
+    border-radius: 5vh;
+    margin-top: 1vh;
+    padding: 1vh 6vh;
+    font-family: "Vivaldi";
+    font-size: 4vh;
+    color:white;
+    background: linear-gradient(45deg,#EB9C9C,#2D4CE9);
+}
+
+.signup-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+    gap:3vh;
+    height: 20vh;
+    width: 100%;
+}
+
+.signup-inputs .field{
+    height: calc(100%/3);
+    width: 100%;
+    font-size: 2vh;
+}
+
+.signup-inputs label{
+    position: absolute;
+    margin-top:1.5vh;
+    margin-left: 1vh;
+    font-size: 3vh;
+    height: auto;
+}
+
+.signup-inputs input{
+    width:100%;
+    height:100%;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    padding-left:4.5vh !important;
+    color: #fff;
+    background-color: transparent;
+}
+.signup-inputs input::placeholder{
+    color:#fff;
+}
+
+.signup-inputs .buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-inputs .buttons Button{
+    width:48%;
+    height: 100%;
+   
+}
+.signup-inputs input,.signup-inputs .buttons Button{
+    font-size: 3vh;
+    border-radius: 1.5vh;
+    padding:1.5vh;
+}
+
+.signup-extra{
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vh;
+    font-size:2vh;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.4vh;
+    color:#fff;
+    border-radius: 2vh;
+    padding:0 1.5vh;
+    background-color: #00000010;
+}
+
+.signup-extra p{
+    cursor: pointer;
+}
+
+.signup-extra p:hover{
+    color:rgba(255, 255, 255, 0.8);
+}
+
+.signup-extra p:active{
+    color:rgba(255, 255, 255, 0.9);
+}
+
+

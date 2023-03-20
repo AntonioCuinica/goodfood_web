@@ -13,7 +13,7 @@ const home=(props)=>{
                 <Publication setModal={props.setModal}/>
             </div>
             <div className="home-about">
-               <AboutUser/>
+               <AboutUser setModal={props.setModal} user={null}/>
             </div>
         </div>
     );
