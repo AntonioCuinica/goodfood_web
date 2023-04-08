@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Modal from './components/modal';
 import VerticalMenu from './components/verticalMenu';
-import Home from './home/index.js';
+import Home from './home';
 import Profile from './Profile';
 import Search from './Search';
 import Setting from './Setting';

@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AboutUser from "../components/aboutUser";
 import Publication from "../components/publication";
 import "./index.css";
 
-const home=(props)=>{
+const Home=(props)=>{
+    const URL="http://localhost:8080/publication/view/all";
+    const [publication,setPublication]=useState([]);
+    const searchPublications= async ()=>{
+        const response= await fetch(`${URL}`);
+        const data= await response.json();
+        setPublication(data);
+    }
+
+    useEffect(()=>{
+        searchPublications();
+    },[]);
+
     return(
         <div className="home">
             <div className="home-publications">
-                <Publication setModal={props.setModal}/>
-                <Publication setModal={props.setModal}/>
-                <Publication setModal={props.setModal}/>
-                <Publication setModal={props.setModal}/>
+                {
+                    publication.map(pub=><Publication setModal={props.setModal} publication={pub}/>)
+                }
             </div>
             <div className="home-about">
                <AboutUser setModal={props.setModal} user={null}/>
@@ -19,4 +30,4 @@ const home=(props)=>{
     );
 }
 
-export default home;
+export default Home;
