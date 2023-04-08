@@ -6,6 +6,7 @@ import "./index.css";
 const Home=(props)=>{
     const URL="http://localhost:8080/publication/view/all";
     const [publication,setPublication]=useState([]);
+    
     const searchPublications= async ()=>{
         const response= await fetch(`${URL}`);
         const data= await response.json();

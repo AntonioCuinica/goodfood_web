@@ -9,15 +9,14 @@ const UserBar=(props)=>{
     const URL="http://localhost:8080/account/image/";
     const [image,setImage]=useState("NotFound");
 
-    const imageFetch= async ()=>{
-        const response= await fetch(`${URL+accountId}`);
-        const data= await response.json();
+    const fetchImage= async ()=>{
+        const response = await fetch(`${URL+accountId}`);
+        const data = await response.json();
         setImage(data.image);
-        console.log(image);
     }
 
     useEffect(()=>{
-        imageFetch();
+        fetchImage();
     },[]);
 
     return(

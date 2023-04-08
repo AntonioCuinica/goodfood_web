@@ -46,7 +46,7 @@ const Publication=(props)=>{
                     <p>{publication.views}</p>
                 </div>
                 <div className="pub-info-open" >
-                    <p onClick={()=>props.setModal({close:false,component:<SeeRecipe setModal={props.setModal}/>})
+                    <p onClick={()=>props.setModal({close:false,component:<SeeRecipe setModal={props.setModal} recipeId={publication.recipeId}/>})
                 }>Ver</p>
                 </div>
             </div>
