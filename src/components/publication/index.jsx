@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Profile from "../../img/profile.jpg"
 import MukapataImg from "../../img/prato1.png"
 import {FaEye,FaHeart} from "react-icons/fa"
@@ -6,26 +6,16 @@ import {IoStarOutline} from "react-icons/io5"
 import "./index.css";
 import UserBar from "../userBar";
 import SeeRecipe from "../seeRecipe";
+import FetchImage from "../fetchImage";
 
 const Publication=(props)=>{
     const publication=props.publication;
-    const URL="http://localhost:8080/publication/image/";
-    const [image,setImage]=useState("NotFound");
-
-    const imageFetch= async ()=>{
-        const response= await fetch(`${URL+publication.id}`);
-        const data= await response.json();
-        setImage(data.image);
-        console.log(image);
-    }
-
-    useEffect(()=>{
-        imageFetch();
-    },[]);
+    const image= Boolean(publication) ?FetchImage("http://localhost:8080/publication/image/"+publication.id) : "NotFound";
 
     return(
+        Boolean(publication) ?
         <div className="pub-main">
-            <UserBar img={Profile} name={publication.name} accountId={publication.accountId}/>
+            <UserBar img={Profile} name={publication.name} accountId={publication.accountId} hide={props.hide}/>
             <div className="pub-recipe">
                 <div className="pub-recipe-title">
         	        <p>{publication.recipe}</p>
@@ -51,6 +41,8 @@ const Publication=(props)=>{
                 </div>
             </div>
         </div>
+        :
+        <></>
     );
 }
 

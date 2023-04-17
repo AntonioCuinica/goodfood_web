@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     gap:3vh;
-    color:#000;
+    color:#ffffff;
 }
 
 .login-logo{
@@ -50,6 +50,16 @@
     width: 100%;
 }
 
+.error-msg{
+    font-size: 2.5vh;
+    height:calc(100%/4);
+    width:100%;
+    text-align: center;
+    border-radius: 0.5vh;
+    background-color: rgba(255, 255, 255, 0.399);
+    color:red;
+}
+
 .login-inputs .username, .login-inputs .password,.login-inputs .buttons{
     height: calc(100%/3);
     width: 100%;
@@ -70,6 +80,12 @@
     border: none;
     outline: none;
     padding-left:4.5vh !important;
+    background-color: rgba(0, 0, 0, 0.25);
+    color:white;
+}
+
+.login-inputs input::placeholder{
+    color:white; 
 }
 
 .login-inputs .buttons{

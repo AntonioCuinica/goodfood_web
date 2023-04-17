@@ -2,20 +2,11 @@ import React, { useEffect, useState } from "react";
 import AboutUser from "../components/aboutUser";
 import Publication from "../components/publication";
 import "./index.css";
+import FetchPublication from "../components/fetchPublication";
 
 const Home=(props)=>{
-    const URL="http://localhost:8080/publication/view/all";
-    const [publication,setPublication]=useState([]);
-    
-    const searchPublications= async ()=>{
-        const response= await fetch(`${URL}`);
-        const data= await response.json();
-        setPublication(data);
-    }
-
-    useEffect(()=>{
-        searchPublications();
-    },[]);
+    const user=props.user;
+    const publication=FetchPublication("http://localhost:8080/publication/view/all");
 
     return(
         <div className="home">
@@ -25,7 +16,7 @@ const Home=(props)=>{
                 }
             </div>
             <div className="home-about">
-               <AboutUser setModal={props.setModal} user={null}/>
+               <AboutUser setModal={props.setModal} user={user}/>
             </div>
         </div>
     );

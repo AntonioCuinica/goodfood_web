@@ -52,7 +52,9 @@ const SeeRecipe=(props)=>{
                                 ?
                                     <Step title="" message="Nenhun passo encontrado"/>
                                 :
-                                    steps.map(item=><Step title={<>{item.number}<sup>o</sup> passo</>} message={item.detail}/>)
+                                    steps.sort((item1,item2)=>{
+                                        return item1.number>item2.number ? 1:(item1.number<item2.number ? -1 : 0)
+                                    }).map(item=><Step title={<>{item.number}<sup>o</sup> passo</>} message={item.detail}/>)
                         }  
                 </div>
             </div>

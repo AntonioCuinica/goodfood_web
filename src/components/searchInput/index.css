@@ -10,6 +10,12 @@
     box-shadow: 0.005px 0.005px 10px 1px rgb(214, 209, 217);
 }
 
+.search-input:focus-within{
+    background-color: white;
+    color:black;
+    transition: 2s ease-in-out;
+}
+
 .search-input input{
     width:90%;
     height:100%;
@@ -32,4 +38,9 @@
 
 .search-input-icon:hover{
    cursor: pointer;
+   color: black;
+}
+
+.search-input-icon:active{
+    color:white;
 }

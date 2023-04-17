@@ -4,7 +4,7 @@
     max-height: 8vh;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap: 2vh;
     padding: 2vh;
     background: linear-gradient(-45deg,#ead1b1,#f1d3b2,#d9b690,#af9476);

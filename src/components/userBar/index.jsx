@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Button from "../button";
 import Profile from "../../img/profile.jpg";
 import "./index.css"
+import FetchImage from "../fetchImage";
 
 const UserBar=(props)=>{
     const name=props.name;
     const accountId=props.accountId;
-    const URL="http://localhost:8080/account/image/";
-    const [image,setImage]=useState("NotFound");
-
-    const fetchImage= async ()=>{
-        const response = await fetch(`${URL+accountId}`);
-        const data = await response.json();
-        setImage(data.image);
-    }
-
-    useEffect(()=>{
-        fetchImage();
-    },[]);
+    const image=FetchImage("http://localhost:8080/account/image/"+accountId);
 
     return(
         <div className="publisher">
@@ -25,7 +15,7 @@ const UserBar=(props)=>{
                 <img src={image!=="NotFound" ? image:Profile} alt={name}/>
                 <p>{name}</p>
             </div>
-            <div className="pub-follow">
+            <div className="pub-follow" style={{display:Boolean(props.hide)?"none":"flex"}} >
                 <Button text="Seguir"/>
             </div>
         </div>

@@ -3,6 +3,7 @@ import Button from "../button"
 import { FaUser,FaRegCalendarAlt,FaPhone,FaEnvelope} from 'react-icons/fa';
 
 import "./index.css";
+import Login from "../login";
 
 
 const SignUp=(props)=>{
@@ -50,7 +51,7 @@ const SignUp=(props)=>{
                 </div>
            </div>
            <div className="signup-extra">
-                <p>Fazer login</p>
+                <p  onClick={()=>props.setModal({close:false,component:<Login setModal={props.setModal}/>})}>Fazer login</p>
             </div>
         </div>
     )

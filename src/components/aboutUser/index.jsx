@@ -4,21 +4,27 @@ import Login from "../login";
 import SignUp from "../signUp";
 import UserBar from "../userBar";
 import "./index.css"
+import FetchImage from "../fetchImage";
 
 const AboutUser=(props)=>{
+    const account=Boolean(props.user) ? props.user.account:null;
+    const image=Boolean(account) ? FetchImage("http://localhost:8080/account/image/"+account.id) : "NotFound";
+
+    const logout=()=>{
+        localStorage.clear()
+        window.location.reload(false);
+    }
+    
     return(
-        Boolean(props.user) ? 
+        Boolean(account) ? 
         <div className="about-user">
             <div className="abusr-profile">
-                <img src={Profile} alt="profile"/>
-                <p>Antonio Ricardo Cuinica</p>
-                <button>Sair</button>
+                <img src={image!=="NotFound" ? image:Profile} alt={account.name}/>
+                <p>{account.name+" "+account.surname}</p>
+                <button onClick={logout}>Sair</button>
             </div>
             <div className="abusr-sugestion">
                 <h2 className="abusr-sugestion-title">Sugestões de contas a seguir</h2>
-                <UserBar img={Profile}/>
-                <UserBar img={Profile}/>
-                <UserBar img={Profile}/>
                 <UserBar img={Profile}/>
             </div>
         </div>
