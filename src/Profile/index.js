@@ -22,7 +22,7 @@ const Profile=(props)=>{
                 <p className="name">{account.name+" "+account.surname}</p>
                 <div className="info">
                     <div className="data">
-                        <p>10K</p>
+                        <p>{publication.length}</p>
                         <p>Publicações</p>
                     </div>
                     <div className="data">
@@ -44,7 +44,7 @@ const Profile=(props)=>{
                 <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal}/>})} >Publicar nova receita {<IoAdd/>}</button>
                 <div className="profile-content-publications">
                     {
-                        publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true}/> </div>)
+                        publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true} hideUser={true}/></div>)
                     }
                 </div>
             </div>

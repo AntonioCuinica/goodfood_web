@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: stretch;
     padding:4vh 4vh 0px 4vh;
-    background-color: rgba(82, 69, 118, 0.4);
     overflow-y: scroll;
 }
 

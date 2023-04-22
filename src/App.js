@@ -10,12 +10,10 @@ import Setting from './Setting';
 function App() {
   let [tab,setTab]=useState("Home");
   let [modal,setModal]=useState({close:true,component:<></>}) 
-  const [user,setUser]=useState({});
+  const [user,setUser]=useState(null);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    console.log(loggedInUser);
-    console.log(localStorage.getItem("token"));
     try{
       setUser(JSON.parse(loggedInUser));
     }catch(e){

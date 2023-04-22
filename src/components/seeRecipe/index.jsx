@@ -50,7 +50,7 @@ const SeeRecipe=(props)=>{
                         {
                             steps.length === 0 
                                 ?
-                                    <Step title="" message="Nenhun passo encontrado"/>
+                                    <Step title="" message="Nenhum passo encontrado"/>
                                 :
                                     steps.sort((item1,item2)=>{
                                         return item1.number>item2.number ? 1:(item1.number<item2.number ? -1 : 0)
