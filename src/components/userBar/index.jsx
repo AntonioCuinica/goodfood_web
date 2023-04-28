@@ -1,42 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../button";
 import Profile from "../../img/profile.jpg";
 import "./index.css"
 import FetchImage from "../fetchImage";
-import FetchAccount from "../fetchAccount";
 
 const UserBar=(props)=>{
     const name=props.name;
-    const user =props.user;
+    const [user,setUser]=useState(props.user);
     const accountId=props.accountId;
     const image=FetchImage("http://localhost:8080/account/image/"+accountId);
-    
-    const follow = (user, accountId) => {
-        const uId = Boolean(user) ? user.account.id : -1;
-        if (uId === accountId) {
-          return false;
-        }
-        const account = FetchAccount(`http://localhost:8080/account/${accountId}`);
-        if(!Boolean(account)){
-            return false;
-        }else{
-            if(!Boolean(account.followers))return false;
-        }
+    const [following,setFollowing]=useState(false);
+    const [account,setAccount]=useState({});
 
+    function follow(){
+        if(!(Boolean(user) && Boolean(account))){
+            setFollowing(false);
+        }
+        else if(user.account.id === account.id){
+            setFollowing(false);
+        }else if(!Boolean(account.followers)){
+            setFollowing(true);
+        } else {
+            fetchUser(user.username);
+            user.account.following.forEach(item => {
+              account.followers.forEach(elem => {
+                if (elem.id === item.id) {
+                  setFollowing(false);
+                }
+              });
+            });
+        }
+    }
+    
+    const fetchAccount= async ()=>{
+        const response= await fetch(`http://localhost:8080/account/${accountId}`,{method:"GET"});
+        const data= await response.json();
+        setAccount(data); 
+    }
+
+    const fetchUser= async (username)=>{
+        const response= await fetch(`http://localhost:8080/user/${username}`,{method:"GET"});
+        const data= await response.json();
+        setUser(data);
+        localStorage.setItem('user', JSON.stringify(data)); 
+    }
+
+    const post= async (URL)=>{
+        await fetch(`${URL}`,{method:"POST"});
+        setFollowing(false);
+    }
+
+    const followAccount=()=>{
         if (Boolean(user)) {
-          for (const item of user.account.following) {
-            for (const elem of account.followers) {
-              if (elem.id === item.id) {
-                return false;
-              }
-            }
-          }
+            post("http://localhost:8080/follow/"+accountId+"/"+user.account.id);
+            follow();
         }
-        return true;
-      }
+    }
 
-    const following=follow(user,accountId);
-    
+    useEffect(()=>{
+        fetchAccount();
+    }, [accountId]);
+
+    useEffect(()=>{
+        if(Boolean(user)){
+            fetchUser(user.username);
+        }
+    }, []);
+
+    useEffect(()=>{
+        follow();
+    }, [account]);
+
     return(
         <div className="publisher">
             <div className="pub-profile">
@@ -44,7 +78,7 @@ const UserBar=(props)=>{
                 <p>{name}</p>
             </div>
             <div className="pub-follow" style={{display:(Boolean(props.hide) || (!following))?"none":"flex"}} >
-                <Button text="Seguir"/>
+                <Button text="Seguir" onClick={followAccount}/>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/button";
 import Publication from "../components/publication";
 import ProfileFoto from "../img/profile.jpg";
@@ -8,11 +8,13 @@ import NewRecipe from "../components/newRecipe";
 import EditProfile from "../components/editProfile";
 import FetchImage from "../components/fetchImage";
 import FetchPublication from "../components/fetchPublication";
+import FormatValue from "../components/formatValue";
 
 const Profile=(props)=>{
     const account=Boolean(props.user) ? props.user.account : null;
     const image= Boolean(account) ? FetchImage("http://localhost:8080/account/image/"+account.id) : "NotFound";
     const publication= Boolean(account) ? FetchPublication("http://localhost:8080/publication/view/all/"+account.id) : [];
+    const [tab,setTab]=useState("first");
 
     return(
         Boolean(account) ?
@@ -22,15 +24,15 @@ const Profile=(props)=>{
                 <p className="name">{account.name+" "+account.surname}</p>
                 <div className="info">
                     <div className="data">
-                        <p>{publication.length}</p>
+                        <p>{FormatValue(publication.length)}</p>
                         <p>Publicações</p>
                     </div>
                     <div className="data">
-                        <p>{account.followers.length}</p>
+                        <p>{FormatValue(account.followers.length)}</p>
                         <p>Seguidores</p>
                     </div>
                     <div className="data">
-                        <p>{account.following.length}</p>
+                        <p>{FormatValue(account.following.length)}</p>
                         <p>Seguindo</p>
                     </div>
                 </div>
@@ -38,13 +40,14 @@ const Profile=(props)=>{
             </div>
             <div className="profile-content">
                 <div className="profile-content-tabs">
-                    <p>Publicações</p>
-                    <p>Favoritos</p>
+                    <p style={{"background-color":tab==="first" ?"rgb(152, 186, 215)":"transparent","border-bottom": tab==="first" ?"0.5vh solid black":"transparent"}} onClick={()=>setTab("first")}>Publicações</p>
+                    
+                    <p style={{"background-color":tab==="second" ?"rgb(152, 186, 215)":"transparent","border-bottom": tab==="second" ?"0.5vh solid black":"transparent"}} onClick={()=>setTab("second")}>Favoritos</p>
                 </div>
                 <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal}/>})} >Publicar nova receita {<IoAdd/>}</button>
                 <div className="profile-content-publications">
                     {
-                        publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true} hideUser={true}/></div>)
+                        publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true} hideUser={true} user={props.user}/></div>)
                     }
                 </div>
             </div>

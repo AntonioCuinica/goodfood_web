@@ -7,14 +7,18 @@ import UserBar from "../userBar";
 import SeeRecipe from "../seeRecipe";
 import FetchImage from "../fetchImage";
 import FetchLike from "../fetchLike";
+import FetchView from "../fetchView";
+import FormatValue from "../formatValue";
 
 const Publication=(props)=>{
     const publication=props.publication;
     const image = Boolean(publication) ?FetchImage("http://localhost:8080/publication/image/"+publication.id) : "NotFound";
     const like = Boolean(publication) ?FetchLike("http://localhost:8080/like/all/"+publication.id) : [];
     const [numLikes,setNumLikes]=useState(0);
-
     const [liked,setLiked]=useState(false);
+    const [numViews,setNumViews]=useState(0);
+    const [viewed,setViewed]=useState(false);
+    const view = Boolean(publication) ?FetchView("http://localhost:8080/view/all/"+publication.id) : [];
 
     const initLike=()=>{
         setNumLikes(0);
@@ -30,40 +34,60 @@ const Publication=(props)=>{
             setLiked(false);
     }
     
-    const postLikes= async (URL)=>{
-        const response= await fetch(`${URL}`,{method:"POST"});
-        const data= await response.json();
-        console.log(data);
+    const initView=()=>{
+        setNumViews(0);
+        if(!Boolean(view)){
+            setViewed(false)
+        }else if(view.length === 0){
+            setViewed(false)
+        }
+        
+        Boolean(props.user) ? 
+            setViewed(view.some(item=>item.account.id===props.user.account.id))
+         : 
+            setViewed(false);
+    }
+
+    const post= async (URL)=>{
+        await fetch(`${URL}`,{method:"POST"});
     }
 
     const deleteLikes= async (URL)=>{
-        const response= await fetch(`${URL}`,{method:"DELETE"});
-        const data= await response.json();
-        console.log(data);
+        await fetch(`${URL}`,{method:"DELETE"});
     }
 
     const handleLike=()=>{
-        
         if(Boolean(props.user)){
             if(publication.accountId !== props.user.account.id){
                 setLiked(!liked);
                 if(!liked){
-                    postLikes("http://localhost:8080/like/"+publication.id+"/"+props.user.account.id);
+                    post("http://localhost:8080/like/"+publication.id+"/"+props.user.account.id);
                     setNumLikes(numLikes+1);
                 }else if(Boolean(like)){
-                
                     deleteLikes("http://localhost:8080/like/"+publication.id+"/"+props.user.account.id);
                     setNumLikes(numLikes-1);
                 }
             }
         }
-    } 
+    }
+    
+    const handleView=()=>{
+        props.setModal({close:false,component:<SeeRecipe setModal={props.setModal} recipeId={publication.recipeId}/>})
+        if(Boolean(props.user)){
+            if(publication.accountId !== props.user.account.id){
+                setViewed(true);
+                if(!viewed){
+                    post("http://localhost:8080/view/"+publication.id+"/"+props.user.account.id);
+                    setNumViews(numViews+1);
+                }
+            }
+        }
+    }
 
     useEffect(()=>{
         initLike();
+        initView();
     },[like]);
-
-   
 
     return(
         Boolean(publication) ?
@@ -86,15 +110,14 @@ const Publication=(props)=>{
             <div className="pub-info">
                 <div className="pub-info-like" onClick={handleLike}>
                     <FaHeart style={{color:liked ? "red":"white"}}/>
-                    <p>{(Number(publication.likes)+numLikes)}</p>
+                    <p>{FormatValue((Number(publication.likes)+numLikes))}</p>
                 </div>
                 <div className="pub-info-view">
-                    <FaEye/>
-                    <p>{publication.views}</p>
+                    <FaEye style={{color:viewed ? "rgb(89, 169, 211)":"white"}}/>
+                    <p>{FormatValue((Number(publication.views)+numViews))}</p>
                 </div>
                 <div className="pub-info-open" >
-                    <p onClick={()=>props.setModal({close:false,component:<SeeRecipe setModal={props.setModal} recipeId={publication.recipeId}/>})
-                }>Ver</p>
+                    <p onClick={handleView}>Ver</p>
                 </div>
             </div>
         </div>
