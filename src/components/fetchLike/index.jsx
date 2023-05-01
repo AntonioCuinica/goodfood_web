@@ -11,7 +11,7 @@ const FetchLike=(URL)=>{
 
     useEffect(()=>{
         searchLikes();
-    },[]);
+    },[URL]);
 
 
     return like;

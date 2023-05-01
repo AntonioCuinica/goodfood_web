@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/button";
 import Publication from "../components/publication";
 import ProfileFoto from "../img/profile.jpg";
@@ -13,8 +13,24 @@ import FormatValue from "../components/formatValue";
 const Profile=(props)=>{
     const account=Boolean(props.user) ? props.user.account : null;
     const image= Boolean(account) ? FetchImage("http://localhost:8080/account/image/"+account.id) : "NotFound";
-    const publication= Boolean(account) ? FetchPublication("http://localhost:8080/publication/view/all/"+account.id) : [];
+    const [publication,setPublication] = useState([]);
+    const numPubs=Boolean(account) ? FetchPublication("http://localhost:8080/publication/view/all/"+account.id).length : 0;
     const [tab,setTab]=useState("first");
+
+    const fetchPublications= async (URL)=>{
+        const response= await fetch(`${URL}`);
+        const data= await response.json();
+        setPublication(data);
+        console.log(publication);
+    }
+
+    useEffect(()=>{
+        if(tab==="first"){
+            fetchPublications("http://localhost:8080/publication/view/all/"+account.id);
+        }else if(tab==="second"){
+            fetchPublications("http://localhost:8080/publication/view/favorite/"+account.id);
+        }
+    },[tab]);
 
     return(
         Boolean(account) ?
@@ -24,7 +40,7 @@ const Profile=(props)=>{
                 <p className="name">{account.name+" "+account.surname}</p>
                 <div className="info">
                     <div className="data">
-                        <p>{FormatValue(publication.length)}</p>
+                        <p>{FormatValue(numPubs)}</p>
                         <p>Publicações</p>
                     </div>
                     <div className="data">
@@ -44,10 +60,10 @@ const Profile=(props)=>{
                     
                     <p style={{"background-color":tab==="second" ?"rgb(152, 186, 215)":"transparent","border-bottom": tab==="second" ?"0.5vh solid black":"transparent"}} onClick={()=>setTab("second")}>Favoritos</p>
                 </div>
-                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal}/>})} >Publicar nova receita {<IoAdd/>}</button>
+                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal}/>})} style={{"display":tab==="second" ? "none": "flex"}}>Publicar nova receita {<IoAdd/>}</button>
                 <div className="profile-content-publications">
                     {
-                        publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true} hideUser={true} user={props.user}/></div>)
+                        publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true} hideUser={tab==="first"} user={props.user}/></div>)
                     }
                 </div>
             </div>

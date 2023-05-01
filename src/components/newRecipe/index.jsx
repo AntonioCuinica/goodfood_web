@@ -8,6 +8,7 @@ const NewRecipe=(props)=>{
     const [ingredient,setIngredient]=useState("");
     const [steps,setSteps]=useState([]);
     const [step,setStep]=useState("");
+    const [image,setImage]=useState("Escolha uma imagem/video")
 
     const addToListItems=(value,setSomethings,setSomething,arr)=>{
         if(Boolean(value)){
@@ -61,8 +62,15 @@ const NewRecipe=(props)=>{
            <div className="new-recipe-upload-media">
                 <label>
                     <span className="new-recipe-right-icon"><IoImage/></span>
-                    <span>Escolha uma imagem/video</span>
-                    <input type="file" name="preview" accept="image/*,video/*"/>
+                    <span>
+                        {       image.substring(image.lastIndexOf('\\')+1).length<=25 
+                            ?
+                                image.substring(image.lastIndexOf('\\')+1) 
+                            :
+                               "..."+image.substring(image.lastIndexOf('\\')+1).substring(image.substring(image.lastIndexOf('\\')+1).length-25)
+                        }
+                    </span>
+                    <input type="file" name="preview" accept="image/*,video/*" onChange={e=>setImage(e.target.value)}/>
                 </label>
                 <button>Publicar receita</button>
            </div>

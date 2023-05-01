@@ -11,7 +11,7 @@ const FetchView=(URL)=>{
 
     useEffect(()=>{
         searchViews();
-    },[]);
+    },[URL]);
 
     return view;
 }

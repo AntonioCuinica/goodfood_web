@@ -11,7 +11,7 @@ const FetchImage=(URL)=>{
 
     useEffect(()=>{
         imageFetch();
-    },[]);
+    },[URL]);
 
     return image;
 }

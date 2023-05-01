@@ -11,7 +11,7 @@ const FetchPublication=(URL)=>{
 
     useEffect(()=>{
         searchPublications();
-    },[]);
+    },[URL]);
 
 
     return publication;
