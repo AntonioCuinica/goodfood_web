@@ -44,12 +44,18 @@
 }
 
 .see-recipe-ingredients ul{
-    height:90%;
     margin-left: 2vw;
 }
 
 .see-recipe-ingredients ul li{
     line-height: 5vh;
+    font-size: 3vh;
+}
+.see-recipe-ingredients .desc{
+    border-radius: 1vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding:1vh;
+    margin: 2vh 0;
     font-size: 3vh;
 }
 

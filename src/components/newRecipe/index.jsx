@@ -9,6 +9,10 @@ const NewRecipe=(props)=>{
     const [steps,setSteps]=useState([]);
     const [step,setStep]=useState("");
     const [image,setImage]=useState("Escolha uma imagem/video")
+    const [imageSelected,setImageSelected]=useState(null);
+    const accountId=props.accountId;
+    const [recipeName,setRecipeName]=useState("");
+    const [recipeDesc,setRecipeDesc]=useState("");
 
     const addToListItems=(value,setSomethings,setSomething,arr)=>{
         if(Boolean(value)){
@@ -21,17 +25,77 @@ const NewRecipe=(props)=>{
         setSomethings(arr.filter(item=>item!==name))
     }
 
+    const imageHandle=(e)=>{
+        setImage(e.target.value);
+        setImageSelected(e.target.files[0]);
+    }
+
+    async function publishRecipe(recipe){
+        return fetch('http://localhost:8080/publication/'+accountId, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+        },
+          body: JSON.stringify(recipe)
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            return data;
+        });
+    }
+
+    async function publicationImage(publicationId){
+        const formData = new FormData();
+        formData.append("image", imageSelected);
+        return await fetch('http://localhost:8080/publication/image/'+publicationId, {
+          method: 'POST',
+          body: formData
+        });
+    }
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const recipe = {
+            "name":recipeName,
+            "description":recipeDesc,
+            "ingredients":ingredients.reverse().map(item=>{
+                return {
+                    "name":item
+                }
+            }),
+            "steps":steps.reverse().map((item,index)=>{
+                return {
+                    "detail":item,
+                    "number":(index+1)
+                }
+            })
+        }
+        if((ingredients.length>0 || steps.length>0) && (Boolean(recipeName) && accountId>0) && (image!=="Escolha uma imagem/video")){
+            const resp = await publishRecipe(recipe);
+            if(Boolean(resp) ? resp.id > 0 : false){
+                if(image!=="Escolha uma imagem/video"){
+                   await publicationImage(resp.id);
+                }
+                props.setModal({close:true,component:<></>});
+                window.location.reload(false);
+            }
+        }
+    }
 
     return(
-        <div className="new-recipe" onClick={(e)=>e.stopPropagation()}>
+        <form onSubmit={handleSubmit} className="new-recipe" onClick={(e)=>e.stopPropagation()}>
             <div className="new-recipe-title">
                 <h1>Publicar nova receita</h1>
+            </div>
+            <div className="new-recipe-information">
+                <input type="text"  placeholder="Nome da receita" minLength={3} maxLength={30} required onInvalid={e=>e.target.setCustomValidity("Escreva o nome da receita")} onInput={e=>e.target.setCustomValidity('')} onChange={e=>setRecipeName(e.target.value)}/>
+                <textarea  placeholder="Descrição da receita" onChange={e=>setRecipeDesc(e.target.value)} ></textarea>            
             </div>
            <div className="new-recipe-containers">
                 <div className="new-recipe-ingredients">
                     <h2>Ingredientes</h2>
                     <div className="new-recipe-input">
-                        <input type="text" placeholder="Indique um ingrediente da receita" value={ingredient} onChange={(e)=>setIngredient(e.target.value)}/>
+                        <input type="text" placeholder="Indique um ingrediente da receita" value={ingredient} onChange={(e)=>setIngredient(e.target.value)} />
                         <span className="new-recipe-right-icon" onClick={()=>addToListItems(ingredient,setIngredients,setIngredient,ingredients)}><IoAdd/></span>
                     </div>
                     {
@@ -70,14 +134,14 @@ const NewRecipe=(props)=>{
                                "..."+image.substring(image.lastIndexOf('\\')+1).substring(image.substring(image.lastIndexOf('\\')+1).length-25)
                         }
                     </span>
-                    <input type="file" name="preview" accept="image/*,video/*" onChange={e=>setImage(e.target.value)}/>
+                    <input type="file" name="preview" accept="image/*,video/*" onChange={imageHandle}/>
                 </label>
-                <button>Publicar receita</button>
+                <input type="submit" value={"Publicar receita"} />
            </div>
            <div className="new-recipe-close" >
                 <Button text="Fechar" onClick={()=>props.setModal({close:true,component:<></>})}/>
             </div>
-        </div>
+        </form>
     )
 }
 

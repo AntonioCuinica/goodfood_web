@@ -21,7 +21,6 @@ const Profile=(props)=>{
         const response= await fetch(`${URL}`);
         const data= await response.json();
         setPublication(data);
-        console.log(publication);
     }
 
     useEffect(()=>{
@@ -60,7 +59,7 @@ const Profile=(props)=>{
                     
                     <p style={{"background-color":tab==="second" ?"rgb(152, 186, 215)":"transparent","border-bottom": tab==="second" ?"0.5vh solid black":"transparent"}} onClick={()=>setTab("second")}>Favoritos</p>
                 </div>
-                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal}/>})} style={{"display":tab==="second" ? "none": "flex"}}>Publicar nova receita {<IoAdd/>}</button>
+                <button className="new-recipe-button" onClick={()=>props.setModal({close:false,component:<NewRecipe setModal={props.setModal} accountId={account.id}/>})} style={{"display":tab==="second" ? "none": "flex"}} >Publicar nova receita {<IoAdd/>}</button>
                 <div className="profile-content-publications">
                     {
                         publication.map(pub=><div className="pub"><Publication setModal={props.setModal} publication={pub} hide={true} hideUser={tab==="first"} user={props.user}/></div>)

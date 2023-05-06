@@ -34,6 +34,10 @@ const SeeRecipe=(props)=>{
             </div>
             <div className="see-recipe-containers">
                 <div className="see-recipe-ingredients">
+                    <h2>Descrição da receita</h2>
+                    <div className="desc">
+                        <p>{recipe.description ? recipe.description: "Nenhuma descrição encontrada"}</p>
+                    </div>
                     <h2>Ingredientes</h2>
                     <ul>
                         {
@@ -41,7 +45,7 @@ const SeeRecipe=(props)=>{
                                ?
                                     <li>Nenhum ingrediente encontrado</li>
                                :
-                                    ingredients.map(item=><li>{item.name}: <i>{item.description}</i></li>)
+                                    ingredients.map(item=><li>{item.name}</li>)
                         }
                     </ul>
                 </div>
