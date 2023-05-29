@@ -51,7 +51,7 @@ const Profile=(props)=>{
                         <p>Seguindo</p>
                     </div>
                 </div>
-                <Button text="Editar" onClick={()=>props.setModal({close:false,component:<EditProfile setModal={props.setModal}/>})}/>
+                <Button text="Editar" onClick={()=>props.setModal({close:false,component:<EditProfile setModal={props.setModal} user={props.user}/>})}/>
             </div>
             <div className="profile-content">
                 <div className="profile-content-tabs">

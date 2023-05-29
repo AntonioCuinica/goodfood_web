@@ -7,7 +7,7 @@ import FetchImage from "../fetchImage";
 const UserBar=(props)=>{
     const name=props.name;
     const [user,setUser]=useState(props.user);
-    const accountId=props.accountId;
+    const [accountId,setAccountId]=useState(props.accountId);
     const image=FetchImage("http://localhost:8080/account/image/"+accountId);
     const [following,setFollowing]=useState(false);
     const [account,setAccount]=useState({});
@@ -60,6 +60,10 @@ const UserBar=(props)=>{
     useEffect(()=>{
         fetchAccount();
     }, [accountId]);
+
+    useEffect(()=>{
+        setAccountId(props.accountId);
+    },[props.accountId]);
 
     useEffect(()=>{
         if(Boolean(user)){
