@@ -7,7 +7,8 @@ import { IoImage } from "react-icons/io5";
 import { useState } from "react";
 
 const EditProfile=(props)=>{
-    const account=Boolean(props.user) ? props.user.account:null;
+    const [user,setUser]=useState(props.user);
+    const account=Boolean(user) ? user.account:null;
     const image=Boolean(account) ? FetchImage("http://localhost:8080/account/image/"+account.id) : "NotFound";
     const [img,setImg]=useState("Trocar foto")
     const [imageSelected,setImageSelected]=useState();
@@ -15,8 +16,8 @@ const EditProfile=(props)=>{
     const [surname,setSurname]=useState(account.surname);
     const [cell,setCell]=useState(account.cell);
     const [email,setEmail]=useState(account.email);
-    const [username,setUsername]=useState(props.user.username);
-    const [newPassword,setNewPassword]=useState();
+    const [username,setUsername]=useState(user.username);
+    const [newPassword,setNewPassword]=useState("");
 
     const imageHandle=(e)=>{
         setImg(e.target.value);
@@ -46,13 +47,13 @@ const EditProfile=(props)=>{
           });
     }
 
-    const updateUser=async (user)=>{
-        return fetch('http://localhost:8080/user/'+props.user.id, {
+    const updateUser=async (usr)=>{
+        return fetch('http://localhost:8080/user/'+user.id, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
           },
-            body: JSON.stringify(user)
+            body: JSON.stringify(usr)
           }).then(response => {
               return response.json();
           }).then(data => {
@@ -72,14 +73,20 @@ const EditProfile=(props)=>{
         }
 
         const newUser={
-            "id":props.user.id,
+            "id":user.id,
             "username":username,
             "password":newPassword
         }
 
+        const newUser2={
+            "id":user.id,
+            "username":username
+        }
+
         await updateAccount(newAccount);
         if(Boolean(imageSelected)) await accountImage(account.id);
-        const user =await updateUser(newUser);
+        const usr =await updateUser(Boolean(newPassword) ?newUser:newUser2);
+        setUser(usr);
         localStorage.setItem('user', JSON.stringify(user));
         props.setModal({close:true,component:<></>});
         window.location.reload(false);
